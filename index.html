@@ -1,19 +1,60 @@
 <!DOCTYPE html> <html>
- <head> <title>Leaflet Web Map of Kenya </title> 
- 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" /> 
- 	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script> 
- 	<style> #map {    width: 960px;    height:500px; } </style>
- 	 </head>
-<body>   
- <div id="map"></div>
- <script>    var map = L.map('map',{    center: [-0.35, 37.33],    zoom: 15   
-  });
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'    }).addTo(map);
-    L.popup({ elevation: 260.0 })
-       .setLatLng([-1.286389, 36.817223])
-       .setContent("Nairobi Town")
-       .addTo(map);
-   var marker = L.marker([-1.100396, 37.014533], { title: "JKUAT" }).addTo(map);
-</script>
- </body> 
- </html>
+<head>
+	<title>Interactive Map </title>
+	<h3>Chepchumba Uniter</h3>
+	<h3>EN281-0579/2015</h3>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <script src="ke-counties(3).geojson" type="text/javascript"></script>
+    <style>
+        html, body, #map {
+            height: 100%;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map" style="height: 100%"</div>
+    <script src="https://github.com/uniter-bit/en281-0579-2015-2-.github.io"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+    <script type="text/javascript"> 
+
+    var map = L.map('map').setView([-0.023559, 37.9061928], 10);
+
+    L.tileLayer('http://{s}.tile.cloudmade.com/9067860284bc491e92d2342cc51d47d9/998/256/{z}/{x}/{y}.png', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Imagery © <a href="http://cloudmade.com">CloudMade</a>'}).addTo(map);
+    var featureLayer = L.geoJson('ke-counties(3)');
+     $.getJSON("https://github.com/uniter-bit/en281-0579-2015-2-.github.io",function(data))
+        var defaultStyle = {
+            color: "#000500",
+            weight: 1,
+            opacity: 0.5,
+            fillOpacity: 0.1,
+            fillColor: "#26ba1e"
+        };
+
+    var onEachFeature = function(feature, layer) {    
+    	layer.setStyle(defaultStyle);
+        };
+        layer.bindPopup("feature.properties.name + </br> + feature.properties.pop-2009");.addTo(map);
+         var featureLayer = L.geoJson(boundaries, {
+         	 onEachFeature: onEachFeature
+        });
+         map.addLayer(featureLayer);
+
+        Lmarker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        Lmarker.on('mouseout', function (e) {
+            this.closePopup();.addTo(map);
+        });
+
+    </script>
+
+</body>
+
+</html>
